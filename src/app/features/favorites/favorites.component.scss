@@ -1,0 +1,10 @@
+.favorites {
+  padding: 16px;
+
+  &__empty {
+    text-align: center;
+    color: #757575;
+    margin-top: 48px;
+    font-size: 1rem;
+  }
+}
