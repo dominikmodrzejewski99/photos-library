@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PhotoGrid } from './photo-grid';
+import { Photo } from '../../../../shared/models/photo.model';
+
+const mockPhotos: Photo[] = [
+  { id: 1, url: 'https://picsum.photos/id/1/200/300' },
+  { id: 2, url: 'https://picsum.photos/id/2/200/300' },
+];
 
 describe('PhotoGrid', () => {
   let component: PhotoGrid;
@@ -12,11 +17,32 @@ describe('PhotoGrid', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoGrid);
+    fixture.componentRef.setInput('photos', mockPhotos);
+    fixture.componentRef.setInput('isLoading', false);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render a photo-card for each photo', () => {
+    const cards = fixture.nativeElement.querySelectorAll('app-photo-card');
+    expect(cards.length).toBe(mockPhotos.length);
+  });
+
+  it('should show spinner when isLoading is true', async () => {
+    fixture.componentRef.setInput('isLoading', true);
+    await fixture.whenStable();
+    const spinner = fixture.nativeElement.querySelector('mat-spinner');
+    expect(spinner).toBeTruthy();
+  });
+
+  it('should show error message when error is set', async () => {
+    fixture.componentRef.setInput('error', 'Failed to load');
+    await fixture.whenStable();
+    const error = fixture.nativeElement.querySelector('.photo-grid__error');
+    expect(error?.textContent).toContain('Failed to load');
   });
 });
