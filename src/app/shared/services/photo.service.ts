@@ -2,6 +2,7 @@ import {inject, Service, signal} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {catchError, delay, EMPTY, map} from 'rxjs';
 import {Photo, PhotoResponse} from '../models/photo.model';
+import {environment} from '../../../environments/environment';
 
 const DELAY_MIN_MS = 200;
 const DELAY_MAX_MS = 300;
@@ -11,6 +12,7 @@ const PHOTO_HEIGHT = 600;
 @Service()
 export class PhotoService {
   private http = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
 
   private pageSize = 1;
   private limit = 10;
@@ -30,12 +32,12 @@ export class PhotoService {
       .set('limit', this.limit);
 
     this.http
-      .get<PhotoResponse[]>('https://picsum.photos/v2/list', {params})
+      .get<PhotoResponse[]>(`${this.apiUrl}/v2/list`, {params})
       .pipe(
         delay(DELAY_MIN_MS + Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS)),
         map((photos) => photos.map((photo: PhotoResponse) => ({
           id: Number(photo.id),
-          url: `https://picsum.photos/id/${photo.id}/${PHOTO_WIDTH}/${PHOTO_HEIGHT}`,
+          url: `${this.apiUrl}/id/${photo.id}/${PHOTO_WIDTH}/${PHOTO_HEIGHT}`,
         }))),
         catchError((err) => {
           this.error.set(err.message ?? 'Failed to load photos');
