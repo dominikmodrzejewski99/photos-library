@@ -1,6 +1,7 @@
-<img
-  class="photo-card"
-  [src]="photo().url"
-  [alt]="'Photo ' + photo().id"
-  (click)="photoClick.emit(photo())"
-/>
+<button type="button" class="photo-card" (click)="photoClick.emit(photo())">
+  <img
+    class="photo-card__img"
+    [src]="photo().url"
+    [alt]="'Photo ' + photo().id"
+  />
+</button>

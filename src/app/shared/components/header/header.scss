@@ -2,14 +2,14 @@
   position: sticky;
   top: 0;
   display: block;
-  background-color: #ffffff;
+  background-color: var(--mat-sys-surface);
 }
 
 .header {
   display: flex;
   justify-content: center;
   padding: 16px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
 
   &__nav {
     display: flex;
@@ -20,7 +20,7 @@
 
       &--active {
         font-weight: 700;
-        color: #1976d2;
+        color: var(--mat-sys-primary);
       }
     }
   }

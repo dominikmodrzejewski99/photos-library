@@ -14,7 +14,7 @@ export class PhotoService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
-  private pageSize = 1;
+  private page = 1;
   private limit = 10;
 
   readonly photos = signal<Photo[]>([]);
@@ -28,7 +28,7 @@ export class PhotoService {
     this.error.set(null);
 
     const params = new HttpParams()
-      .set('page', this.pageSize)
+      .set('page', this.page)
       .set('limit', this.limit);
 
     this.http
@@ -48,7 +48,7 @@ export class PhotoService {
       .subscribe({
         next: (photos: Photo[]) => {
           this.photos.update((prev) => [...prev, ...photos]);
-          this.pageSize++;
+          this.page++;
           this.isLoading.set(false);
         },
       });

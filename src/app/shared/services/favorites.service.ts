@@ -1,4 +1,4 @@
-import { computed, effect, Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 import { Photo } from '../models/photo.model';
 
 const STORAGE_KEY = 'favorites';

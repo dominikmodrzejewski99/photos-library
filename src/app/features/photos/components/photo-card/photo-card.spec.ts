@@ -31,7 +31,7 @@ describe('PhotoCard', () => {
 
   it('should emit photoClick with the photo when clicked', () => {
     const spy = vi.spyOn(component.photoClick, 'emit');
-    fixture.debugElement.query(By.css('img')).triggerEventHandler('click');
+    fixture.debugElement.query(By.css('button')).triggerEventHandler('click');
     expect(spy).toHaveBeenCalledWith(mockPhoto);
   });
 });
