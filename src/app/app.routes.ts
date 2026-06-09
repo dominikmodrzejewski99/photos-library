@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: 'photos/:id',
     loadComponent: () =>
-      import('./features/photo-detail/components/photo-detail/photo-detail').then((m) => m.PhotoDetail),
+      import('./features/photo-detail/photo-detail.component').then((m) => m.PhotoDetailComponent),
   },
   {
     path: 'favorites',
