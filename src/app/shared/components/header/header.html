@@ -1,0 +1,19 @@
+<header class="header">
+  <nav class="header__nav">
+    <a
+      mat-button
+      routerLink="/"
+      routerLinkActive="header__nav-btn--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Photos
+    </a>
+    <a
+      mat-button
+      routerLink="/favorites"
+      routerLinkActive="header__nav-btn--active"
+    >
+      Favorites
+    </a>
+  </nav>
+</header>

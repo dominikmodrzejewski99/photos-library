@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+
+  &__nav {
+    display: flex;
+    gap: 8px;
+
+    &-btn--active {
+      font-weight: 700;
+      color: #1976d2;
+    }
+  }
+}
