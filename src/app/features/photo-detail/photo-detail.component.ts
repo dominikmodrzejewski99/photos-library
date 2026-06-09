@@ -5,8 +5,8 @@ import { PhotoDetailView } from '../../shared/components/photo-detail-view/photo
 import { FavoritesService } from '../../shared/services/favorites.service';
 import { Photo } from '../../shared/models/photo.model';
 
-// Picsum returns a square image when only one dimension is given.
-const PHOTO_SIZE = 800;
+const PHOTO_WIDTH = 800;
+const PHOTO_HEIGHT = 600;
 
 @Component({
   selector: 'app-photo-detail',
@@ -23,7 +23,7 @@ export class PhotoDetailComponent {
 
   readonly photo = computed<Photo>(() => ({
     id: this.id(),
-    url: `${this.apiUrl}/id/${this.id()}/${PHOTO_SIZE}`,
+    url: `${this.apiUrl}/id/${this.id()}/${PHOTO_WIDTH}/${PHOTO_HEIGHT}`,
   }));
 
   onRemoveClick(): void {

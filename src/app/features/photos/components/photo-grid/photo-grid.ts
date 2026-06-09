@@ -3,6 +3,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PhotoCard } from '../photo-card/photo-card';
 import { Photo } from '../../../../shared/models/photo.model';
 
+// First two rows of the 3-column grid are eagerly loaded as LCP candidates.
+const PRIORITY_COUNT = 6;
+
 @Component({
   selector: 'app-photo-grid',
   imports: [MatProgressSpinnerModule, PhotoCard],
@@ -15,4 +18,6 @@ export class PhotoGrid {
   readonly error = input<string | null>(null);
 
   readonly photoClick = output<Photo>();
+
+  protected readonly priorityCount = PRIORITY_COUNT;
 }

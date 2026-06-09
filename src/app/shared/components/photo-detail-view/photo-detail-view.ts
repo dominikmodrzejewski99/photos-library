@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Photo } from '../../models/photo.model';
 
 @Component({
   selector: 'app-photo-detail-view',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, NgOptimizedImage],
   templateUrl: './photo-detail-view.html',
   styleUrl: './photo-detail-view.scss',
 })

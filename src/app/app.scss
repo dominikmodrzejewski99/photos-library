@@ -1,10 +1,19 @@
+@use 'layout';
+
 :host {
   display: block;
   min-height: 100%;
 }
 
 .app__content {
-  display: block;
-  max-width: 1200px;
+  padding: 16px;
+}
+
+.app__panel {
+  max-width: layout.$container-max-width;
   margin-inline: auto;
+  background-color: var(--mat-sys-surface);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 16px;
+  @include layout.page-padding;
 }

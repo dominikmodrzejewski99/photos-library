@@ -1,7 +1,9 @@
 <button type="button" class="photo-card" (click)="photoClick.emit(photo())">
   <img
     class="photo-card__img"
-    [src]="photo().url"
+    [ngSrc]="photo().url"
+    fill
+    [priority]="priority()"
     [alt]="'Photo ' + photo().id"
   />
 </button>

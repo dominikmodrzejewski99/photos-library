@@ -1,8 +1,9 @@
 <div class="photo-grid">
-  @for (photo of photos(); track photo.id) {
+  @for (photo of photos(); track photo.id; let i = $index) {
     <app-photo-card
       class="photo-grid__item"
       [photo]="photo"
+      [priority]="i < priorityCount"
       (photoClick)="photoClick.emit($event)"
     />
   }
