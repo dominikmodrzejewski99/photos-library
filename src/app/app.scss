@@ -6,7 +6,7 @@
 }
 
 .app__content {
-  padding: 16px;
+  @include layout.page-padding;
 }
 
 .app__panel {
