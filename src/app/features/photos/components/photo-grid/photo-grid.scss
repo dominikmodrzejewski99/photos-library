@@ -1,8 +1,9 @@
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 8px;
+  gap: 16px;
+  padding-block: 8px;
+  padding-inline: 8px;
 
   &__sentinel {
     height: 1px;

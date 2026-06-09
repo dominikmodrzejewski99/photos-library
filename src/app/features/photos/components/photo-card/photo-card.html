@@ -1,6 +1,8 @@
-<img
-  class="photo-card"
-  [src]="photo().url"
-  [alt]="'Photo ' + photo().id"
-  (click)="photoClick.emit(photo())"
-/>
+<a [routerLink]="['/photos', photo().id]">
+  <img
+    class="photo-card"
+    [src]="photo().url"
+    [alt]="'Photo ' + photo().id"
+    (click)="photoClick.emit(photo())"
+  />
+</a>

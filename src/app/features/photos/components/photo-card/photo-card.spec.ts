@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { vi } from 'vitest';
 import { PhotoCard } from './photo-card';
 
-const mockPhoto = { id: 1, url: 'https://picsum.photos/id/1/200/300' };
+const mockPhoto = { id: 1, url: 'https://picsum.photos/id/1/400/600' };
 
 describe('PhotoCard', () => {
   let component: PhotoCard;
@@ -10,6 +13,7 @@ describe('PhotoCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhotoCard],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoCard);
@@ -27,12 +31,14 @@ describe('PhotoCard', () => {
     expect(img.src).toContain(mockPhoto.url);
   });
 
+  it('should link to the photo detail page', () => {
+    const anchor: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
+    expect(anchor.getAttribute('href')).toBe(`/photos/${mockPhoto.id}`);
+  });
+
   it('should emit photoClick with the photo when clicked', () => {
-    const emitted: unknown[] = [];
-    component.photoClick.subscribe((p) => emitted.push(p));
-
-    fixture.nativeElement.querySelector('img').click();
-
-    expect(emitted).toEqual([mockPhoto]);
+    const spy = vi.spyOn(component.photoClick, 'emit');
+    fixture.debugElement.query(By.css('img')).triggerEventHandler('click');
+    expect(spy).toHaveBeenCalledWith(mockPhoto);
   });
 });

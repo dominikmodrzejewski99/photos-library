@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Photo } from '../../../../shared/models/photo.model';
 
 @Component({
   selector: 'app-photo-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './photo-card.html',
   styleUrl: './photo-card.scss',
 })
