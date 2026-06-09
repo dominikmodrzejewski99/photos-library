@@ -50,3 +50,6 @@ Thumbs.db
 
 # Local environment overrides
 src/environments/environment.development.ts
+
+# Vercel
+.vercel

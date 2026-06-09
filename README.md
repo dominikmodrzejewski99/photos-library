@@ -4,6 +4,8 @@ A small photo library built with Angular 22: an infinite random photostream with
 
 Images are served by [picsum.photos](https://picsum.photos).
 
+**Live demo:** https://photos-library-ten.vercel.app
+
 ## Features
 
 - **Photos** (`/`) - infinite scrollable grid of photos. Clicking a photo adds it to Favorites (with a snackbar confirmation). New photos load on scroll with a loading spinner.
