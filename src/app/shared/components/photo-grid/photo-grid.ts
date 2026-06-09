@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PhotoCard } from '../photo-card/photo-card';
-import { Photo } from '../../../../shared/models/photo.model';
+import { Photo } from '../../models/photo.model';
 
 // First two rows of the 3-column grid are eagerly loaded as LCP candidates.
 const PRIORITY_COUNT = 6;

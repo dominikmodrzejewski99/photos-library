@@ -1,59 +1,68 @@
-# PhotosLibrary
+# Photos Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
+A small photo library built with Angular 22: an infinite random photostream with the ability to save photos to a persistent "Favorites" collection.
 
-## Development server
+Images are served by [picsum.photos](https://picsum.photos).
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- **Photos** (`/`) - infinite scrollable grid of photos. Clicking a photo adds it to Favorites (with a snackbar confirmation). New photos load on scroll with a loading spinner.
+- **Favorites** (`/favorites`) - the full list of saved photos. Clicking a photo opens its detail page. The list persists across page refreshes (localStorage).
+- **Single photo** (`/photos/:id`) - a single large photo with a "Remove from favorites" button.
+- A persistent header lets you switch between Photos and Favorites, highlighting the active view.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tech stack
 
-## Code scaffolding
+- Angular 22 (standalone components, signals, native control flow `@if`/`@for`)
+- TypeScript, SCSS (BEM), Angular Material
+- Vitest for unit tests
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting started
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Requires Node.js 20+ and npm.
 
 ```bash
-ng build
+npm install        # install dependencies
+npm start          # dev server at http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Scripts
 
 ```bash
-ng test
+npm start          # run the dev server
+npm run build      # production build (output: dist/)
+npm test           # run unit tests (Vitest)
+npx tsc --noEmit   # type-check without building
 ```
 
-## Running end-to-end tests
+## Architecture
 
-For end-to-end (e2e) testing, run:
+- **Smart / dumb components.** Page-level smart components (`PhotoList`, `FavoritesComponent`, `PhotoDetailComponent`) own state and dependencies; presentational dumb components (`PhotoGrid`, `PhotoCard`, `PhotoDetailView`) expose only `input()` / `output()`.
+- **State via signals.** `PhotoService` and `FavoritesService` hold state in signals (no RxJS Subjects). Favorites are mirrored to `localStorage`.
+- **Custom infinite scroll.** Implemented with `IntersectionObserver` on a sentinel element (no third-party scroll library).
+- **Image optimization.** Grid and detail images use `NgOptimizedImage` (`ngSrc`) for lazy loading and priority hints.
+- **Routing.** Lazy-loaded routes with route params bound to signal inputs via `withComponentInputBinding()`.
+
+### Project structure
+
+```
+src/app/
+  core/
+    components/    # header (global layout, used once)
+  features/
+    photos/        # photo stream (smart list component)
+    favorites/     # favorites screen
+    photo-detail/  # single photo page (smart container + dumb view)
+  shared/
+    components/    # photo-grid, photo-card (reused across features)
+    services/      # photo.service, favorites.service
+    models/        # Photo, PhotoResponse
+```
+
+## Testing
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Unit tests cover the services (loading, error handling, favorites persistence) and the components (rendering, click outputs, favorite toggling).

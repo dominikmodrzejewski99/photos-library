@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhotoGrid } from '../photos/components/photo-grid/photo-grid';
+import { PhotoGrid } from '../../shared/components/photo-grid/photo-grid';
 import { FavoritesService } from '../../shared/services/favorites.service';
 import { Photo } from '../../shared/models/photo.model';
 

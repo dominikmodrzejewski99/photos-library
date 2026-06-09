@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, numberAttribute } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { PhotoDetailView } from '../../shared/components/photo-detail-view/photo-detail-view';
+import { PhotoDetailView } from './components/photo-detail-view/photo-detail-view';
 import { FavoritesService } from '../../shared/services/favorites.service';
 import { Photo } from '../../shared/models/photo.model';
 

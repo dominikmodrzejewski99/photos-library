@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { PhotoGrid } from './photo-grid';
-import { Photo } from '../../../../shared/models/photo.model';
+import { Photo } from '../../models/photo.model';
 
 const mockPhotos: Photo[] = [
   { id: 1, url: 'https://picsum.photos/id/1/400/600' },

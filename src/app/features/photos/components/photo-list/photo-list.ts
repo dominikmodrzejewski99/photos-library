@@ -1,6 +1,6 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, viewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PhotoGrid } from '../photo-grid/photo-grid';
+import { PhotoGrid } from '../../../../shared/components/photo-grid/photo-grid';
 import { PhotoService } from '../../../../shared/services/photo.service';
 import { FavoritesService } from '../../../../shared/services/favorites.service';
 import { Photo } from '../../../../shared/models/photo.model';
