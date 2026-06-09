@@ -6,8 +6,8 @@ import {environment} from '../../../environments/environment';
 
 const DELAY_MIN_MS = 200;
 const DELAY_MAX_MS = 300;
-const PHOTO_WIDTH = 400;
-const PHOTO_HEIGHT = 600;
+// Picsum returns a square image when only one dimension is given.
+const PHOTO_SIZE = 400;
 
 @Service()
 export class PhotoService {
@@ -37,7 +37,7 @@ export class PhotoService {
         delay(DELAY_MIN_MS + Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS)),
         map((photos) => photos.map((photo: PhotoResponse) => ({
           id: Number(photo.id),
-          url: `${this.apiUrl}/id/${photo.id}/${PHOTO_WIDTH}/${PHOTO_HEIGHT}`,
+          url: `${this.apiUrl}/id/${photo.id}/${PHOTO_SIZE}`,
         }))),
         catchError((err) => {
           this.error.set(err.message ?? 'Failed to load photos');

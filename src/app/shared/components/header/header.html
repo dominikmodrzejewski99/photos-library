@@ -1,7 +1,8 @@
 <header class="header">
   <nav class="header__nav">
     <a
-      mat-button
+      mat-stroked-button
+      class="header__nav-btn"
       routerLink="/"
       routerLinkActive="header__nav-btn--active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -9,7 +10,8 @@
       Photos
     </a>
     <a
-      mat-button
+      mat-stroked-button
+      class="header__nav-btn"
       routerLink="/favorites"
       routerLinkActive="header__nav-btn--active"
     >

@@ -66,8 +66,8 @@ describe('PhotoService', () => {
     vi.advanceTimersByTime(MAX_DELAY_MS);
     await vi.runAllTimersAsync();
 
-    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/400/600' });
-    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/400/600' });
+    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/400' });
+    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/400' });
   });
 
   it('should set isLoading to false after successful load', async () => {
