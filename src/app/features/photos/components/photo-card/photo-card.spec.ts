@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { PhotoCard } from './photo-card';
 
@@ -13,7 +12,6 @@ describe('PhotoCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhotoCard],
-      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoCard);
@@ -29,11 +27,6 @@ describe('PhotoCard', () => {
   it('should render the photo image', () => {
     const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
     expect(img.src).toContain(mockPhoto.url);
-  });
-
-  it('should link to the photo detail page', () => {
-    const anchor: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
-    expect(anchor.getAttribute('href')).toBe(`/photos/${mockPhoto.id}`);
   });
 
   it('should emit photoClick with the photo when clicked', () => {

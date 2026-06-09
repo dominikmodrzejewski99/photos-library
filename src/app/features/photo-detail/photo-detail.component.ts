@@ -1,4 +1,5 @@
 import { Component, computed, inject, input, numberAttribute } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { PhotoDetailView } from '../../shared/components/photo-detail-view/photo-detail-view';
 import { FavoritesService } from '../../shared/services/favorites.service';
@@ -14,6 +15,7 @@ const PHOTO_HEIGHT = 800;
   styleUrl: './photo-detail.component.scss',
 })
 export class PhotoDetailComponent {
+  private readonly router = inject(Router);
   private readonly favoritesService = inject(FavoritesService);
   private readonly apiUrl = environment.apiUrl;
 
@@ -24,13 +26,8 @@ export class PhotoDetailComponent {
     url: `${this.apiUrl}/id/${this.id()}/${PHOTO_WIDTH}/${PHOTO_HEIGHT}`,
   }));
 
-  readonly isFavorite = computed(() => this.favoritesService.isFavorite(this.id()));
-
-  onToggleFavorite(): void {
-    if (this.isFavorite()) {
-      this.favoritesService.removeFavorite(this.id());
-    } else {
-      this.favoritesService.addFavorite(this.photo());
-    }
+  onRemoveClick(): void {
+    this.favoritesService.removeFavorite(this.id());
+    this.router.navigate(['/favorites']);
   }
 }

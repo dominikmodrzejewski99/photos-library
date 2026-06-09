@@ -5,6 +5,7 @@
     <app-photo-grid
       [photos]="photos()"
       [isLoading]="false"
+      (photoClick)="onPhotoClick($event)"
     />
   }
 </div>

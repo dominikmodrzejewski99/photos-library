@@ -16,7 +16,6 @@ describe('PhotoDetailView', () => {
 
     fixture = TestBed.createComponent(PhotoDetailView);
     fixture.componentRef.setInput('photo', mockPhoto);
-    fixture.componentRef.setInput('isFavorite', false);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -30,20 +29,13 @@ describe('PhotoDetailView', () => {
     expect(img.src).toContain(mockPhoto.url);
   });
 
-  it('should show "Add to favorites" when not a favorite', () => {
-    const btn: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-    expect(btn.textContent?.trim()).toBe('Add to favorites');
-  });
-
-  it('should show "Remove from favorites" when is a favorite', async () => {
-    fixture.componentRef.setInput('isFavorite', true);
-    await fixture.whenStable();
+  it('should show the "Remove from favorites" button', () => {
     const btn: HTMLButtonElement = fixture.nativeElement.querySelector('button');
     expect(btn.textContent?.trim()).toBe('Remove from favorites');
   });
 
-  it('should emit toggleFavorite when button is clicked', () => {
-    const spy = vi.spyOn(component.toggleFavorite, 'emit');
+  it('should emit removeClick when button is clicked', () => {
+    const spy = vi.spyOn(component.removeClick, 'emit');
     fixture.debugElement.query(By.css('button')).triggerEventHandler('click');
     expect(spy).toHaveBeenCalledOnce();
   });

@@ -10,6 +10,5 @@ import { Photo } from '../../models/photo.model';
 })
 export class PhotoDetailView {
   readonly photo = input.required<Photo>();
-  readonly isFavorite = input.required<boolean>();
-  readonly toggleFavorite = output<void>();
+  readonly removeClick = output<void>();
 }

@@ -5,8 +5,8 @@
     [alt]="'Photo ' + photo().id"
   />
   <div class="photo-detail-view__actions">
-    <button mat-stroked-button (click)="toggleFavorite.emit()">
-      {{ isFavorite() ? 'Remove from favorites' : 'Add to favorites' }}
+    <button mat-stroked-button (click)="removeClick.emit()">
+      Remove from favorites
     </button>
   </div>
 </div>
