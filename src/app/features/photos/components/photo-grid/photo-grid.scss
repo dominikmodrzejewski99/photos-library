@@ -1,0 +1,22 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+
+  &__sentinel {
+    height: 1px;
+  }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+  }
+
+  &__error {
+    text-align: center;
+    color: #e53935;
+    padding: 16px;
+  }
+}

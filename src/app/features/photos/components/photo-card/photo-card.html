@@ -1,0 +1,6 @@
+<img
+  class="photo-card"
+  [src]="photo().url"
+  [alt]="'Photo ' + photo().id"
+  (click)="photoClick.emit(photo())"
+/>

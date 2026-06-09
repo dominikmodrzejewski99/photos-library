@@ -1,0 +1,19 @@
+<div class="photo-grid">
+  @for (photo of photos(); track photo.id) {
+    <app-photo-card
+      class="photo-grid__item"
+      [photo]="photo"
+      (photoClick)="photoClick.emit($event)"
+    />
+  }
+</div>
+
+@if (isLoading()) {
+  <div class="photo-grid__spinner">
+    <mat-spinner diameter="40" />
+  </div>
+}
+
+@if (error()) {
+  <p class="photo-grid__error">{{ error() }}</p>
+}

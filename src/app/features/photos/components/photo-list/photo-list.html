@@ -1,0 +1,8 @@
+<app-photo-grid
+  [photos]="photos()"
+  [isLoading]="isLoading()"
+  [error]="error()"
+  (photoClick)="onPhotoClick($event)"
+/>
+
+<div #sentinel></div>
