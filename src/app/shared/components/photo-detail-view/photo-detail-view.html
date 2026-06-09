@@ -1,0 +1,12 @@
+<div class="photo-detail-view">
+  <img
+    class="photo-detail-view__image"
+    [src]="photo().url"
+    [alt]="'Photo ' + photo().id"
+  />
+  <div class="photo-detail-view__actions">
+    <button mat-stroked-button (click)="toggleFavorite.emit()">
+      {{ isFavorite() ? 'Remove from favorites' : 'Add to favorites' }}
+    </button>
+  </div>
+</div>
