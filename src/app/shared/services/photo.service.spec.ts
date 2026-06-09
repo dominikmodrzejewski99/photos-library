@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { vi } from 'vitest';
 
-import { PhotoService } from './photo-service';
+import { PhotoService } from './photo.service';
 import { PhotoResponse } from '../models/photo.model';
 
 const PICSUM_API = 'https://picsum.photos/v2/list';
@@ -66,8 +66,8 @@ describe('PhotoService', () => {
     vi.advanceTimersByTime(MAX_DELAY_MS);
     await vi.runAllTimersAsync();
 
-    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/200/300' });
-    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/200/300' });
+    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/400/600' });
+    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/400/600' });
   });
 
   it('should set isLoading to false after successful load', async () => {

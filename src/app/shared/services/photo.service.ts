@@ -5,8 +5,8 @@ import {Photo, PhotoResponse} from '../models/photo.model';
 
 const DELAY_MIN_MS = 200;
 const DELAY_MAX_MS = 300;
-const PHOTO_WIDTH = 200;
-const PHOTO_HEIGHT = 300;
+const PHOTO_WIDTH = 400;
+const PHOTO_HEIGHT = 600;
 
 @Service()
 export class PhotoService {
