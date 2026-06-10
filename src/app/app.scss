@@ -2,18 +2,19 @@
 
 :host {
   display: block;
-  min-height: 100%;
 }
 
-.app__content {
-  @include layout.page-padding;
-}
+.app {
+  &__content {
+    @include layout.page-padding;
+  }
 
-.app__panel {
-  max-width: layout.$container-max-width;
-  margin-inline: auto;
-  background-color: var(--mat-sys-surface);
-  border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 16px;
-  @include layout.page-padding;
+  &__panel {
+    max-width: layout.$container-max-width;
+    margin-inline: auto;
+    background-color: var(--mat-sys-surface);
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 1rem;
+    @include layout.page-padding;
+  }
 }

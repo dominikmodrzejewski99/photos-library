@@ -1,7 +1,7 @@
 // Shared layout constants and helpers for the app shell.
-$container-max-width: 1200px;
+$container-max-width: 75rem;
 
 // Consistent edge padding for page-level containers.
 @mixin page-padding {
-  padding: 16px;
+  padding: 1rem;
 }
