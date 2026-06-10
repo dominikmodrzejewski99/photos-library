@@ -22,6 +22,11 @@ To run a single test file:
 npx vitest run src/app/shared/services/photo.service.spec.ts
 ```
 
+```bash
+npm run e2e        # run Playwright e2e tests (starts dev server on port 4201 automatically)
+npm run e2e -- --ui  # interactive mode with browser preview
+```
+
 ## Architecture
 
 

@@ -17,7 +17,7 @@ Images are served by [picsum.photos](https://picsum.photos).
 
 - Angular 22 (standalone components, signals, native control flow `@if`/`@for`)
 - TypeScript, SCSS (BEM), Angular Material
-- Vitest for unit tests
+- Vitest for unit tests, Playwright for e2e tests
 
 ## Getting started
 
@@ -34,6 +34,7 @@ npm start          # dev server at http://localhost:4200
 npm start          # run the dev server
 npm run build      # production build (output: dist/)
 npm test           # run unit tests (Vitest)
+npm run e2e        # run e2e tests (Playwright, starts server on port 4201)
 npx tsc --noEmit   # type-check without building
 ```
 
@@ -64,7 +65,10 @@ src/app/
 ## Testing
 
 ```bash
-npm test
+npm test       # unit tests (Vitest)
+npm run e2e    # e2e tests (Playwright)
 ```
 
 Unit tests cover the services (loading, error handling, favorites persistence) and the components (rendering, click outputs, favorite toggling).
+
+E2e tests cover the main user flows: browsing photos, adding to favorites, navigating between pages, and removing from favorites.
