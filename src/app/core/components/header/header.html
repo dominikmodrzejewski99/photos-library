@@ -13,7 +13,7 @@
       mat-stroked-button
       class="header__nav-btn"
       routerLink="/favorites"
-      routerLinkActive="header__nav-btn--active"
+      [class.header__nav-btn--active]="isFavoritesActive()"
     >
       Favorites
     </a>
