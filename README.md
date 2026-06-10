@@ -21,7 +21,7 @@ Images are served by [picsum.photos](https://picsum.photos).
 
 ## Getting started
 
-Requires Node.js 20+ and npm.
+Requires Node.js 22.22.3+ (or 24+) and npm. The Angular CLI in this project refuses to start on older versions.
 
 ```bash
 npm install        # install dependencies

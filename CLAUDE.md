@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Stack
 
-Angular 22, TypeScript 6, SCSS, Vitest, Prettier. Angular Material is required by the task spec but not yet installed.
+Angular 22, TypeScript 6, SCSS, Vitest, Prettier. Angular Material is installed and used (buttons, snackbar, progress spinner).
 
 ## Commands
 
@@ -13,13 +13,13 @@ npm start          # dev server at localhost:4200
 npm run build      # production build (output: dist/)
 npm test           # run Vitest unit tests
 
-ng generate component features/photos/components/photo-grid  # scaffold component
+ng generate component features/photos/components/photo-list  # scaffold component
 npx tsc --noEmit   # type-check without building
 ```
 
 To run a single test file:
 ```bash
-npx vitest run src/app/features/photos/photo.service.spec.ts
+npx vitest run src/app/shared/services/photo.service.spec.ts
 ```
 
 ## Architecture
@@ -29,13 +29,13 @@ npx vitest run src/app/features/photos/photo.service.spec.ts
 
 **Signals** - use Angular signals (`signal()`, `computed()`, `effect()`) for local state, not RxJS Subject/BehaviorSubject.
 
-**Infinite scroll** - custom implementation required; no third-party scroll libraries.
+**Infinite scroll** - custom implementation with `IntersectionObserver` on a sentinel element (set up in `afterNextRender`, cleaned up via `DestroyRef`); no third-party scroll libraries.
 
-**Images** - `https://picsum.photos/{width}/{height}?random={seed}` with simulated 200-300ms delay.
+**Images** - real HTTP via `HttpClient`. The grid pages through `https://picsum.photos/v2/list?page={n}&limit={n}`; each image URL is `https://picsum.photos/id/{id}/{size}`. A simulated 200-300ms delay is applied in `PhotoService`.
 
 ## Key conventions
 
 - SCSS for all styles, never plain CSS
-- Feature-based folder structure: `src/app/features/{photos,favorites}/`
+- Feature-based folders under `src/app/features/{photos,favorites,photo-detail}/`; components reused across features live in `src/app/shared/components/` (photo-grid, photo-card); services in `src/app/shared/services/`
 - Shared types in `src/app/shared/models/`
 - Commit messages follow Conventional Commits (enforced by git hook)

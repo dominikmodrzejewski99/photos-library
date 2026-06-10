@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { vi } from 'vitest';
 import { PhotoGrid } from './photo-grid';
 import { Photo } from '../../models/photo.model';
 
@@ -46,5 +48,15 @@ describe('PhotoGrid', () => {
     await fixture.whenStable();
     const error = fixture.nativeElement.querySelector('.photo-grid__error');
     expect(error?.textContent).toContain('Failed to load');
+  });
+
+  it('should emit retry when the Retry button is clicked', async () => {
+    fixture.componentRef.setInput('error', 'Failed to load');
+    await fixture.whenStable();
+    const spy = vi.spyOn(component.retry, 'emit');
+    fixture.debugElement
+      .query(By.css('.photo-grid__error button'))
+      .triggerEventHandler('click');
+    expect(spy).toHaveBeenCalledOnce();
   });
 });

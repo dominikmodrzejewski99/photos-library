@@ -39,8 +39,8 @@ export class PhotoService {
           id: Number(photo.id),
           url: `${this.apiUrl}/id/${photo.id}/${PHOTO_SIZE}`,
         }))),
-        catchError((err) => {
-          this.error.set(err.message ?? 'Failed to load photos');
+        catchError(() => {
+          this.error.set('Could not load photos. Please try again.');
           this.isLoading.set(false);
           return EMPTY;
         }),

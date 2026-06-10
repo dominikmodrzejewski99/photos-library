@@ -31,6 +31,8 @@ export class PhotoList {
           this.photoService.loadMore();
         }
       });
+      // Initial load: the sentinel starts in the viewport, so observing it
+      // fires the callback immediately and loads the first page.
       observer.observe(this.sentinel().nativeElement);
       this.destroyRef.onDestroy(() => observer.disconnect());
     });
@@ -42,5 +44,9 @@ export class PhotoList {
       : 'Added to favorites';
     this.favoritesService.addFavorite(photo);
     this.snackBar.open(message, 'Dismiss', { duration: SNACKBAR_DURATION_MS });
+  }
+
+  onRetry(): void {
+    this.photoService.loadMore();
   }
 }

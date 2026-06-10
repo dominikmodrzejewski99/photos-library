@@ -16,5 +16,8 @@
 }
 
 @if (error()) {
-  <p class="photo-grid__error">{{ error() }}</p>
+  <div class="photo-grid__error">
+    <p class="photo-grid__error-text">{{ error() }}</p>
+    <button mat-stroked-button (click)="retry.emit()">Retry</button>
+  </div>
 }

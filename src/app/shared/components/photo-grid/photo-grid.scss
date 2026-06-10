@@ -14,8 +14,16 @@
   }
 
   &__error {
-    text-align: center;
-    color: var(--mat-sys-error);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
     padding: 16px;
+
+    &-text {
+      margin: 0;
+      text-align: center;
+      color: var(--mat-sys-error);
+    }
   }
 }
