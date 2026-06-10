@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use 'styles/material-overrides';
 
 @font-face {
   font-display: swap;
@@ -53,8 +54,6 @@ html {
     )
   );
 }
-
-@use 'styles/material-overrides';
 
 body {
   color-scheme: light;
