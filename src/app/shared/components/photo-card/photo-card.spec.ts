@@ -1,3 +1,4 @@
+import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { vi } from 'vitest';
@@ -12,6 +13,7 @@ describe('PhotoCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhotoCard],
+      providers: [{ provide: PRECONNECT_CHECK_BLOCKLIST, useValue: ['https://picsum.photos'] }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoCard);

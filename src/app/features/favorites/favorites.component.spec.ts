@@ -1,3 +1,4 @@
+import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -19,6 +20,7 @@ describe('FavoritesComponent', () => {
         imports: [FavoritesComponent],
         providers: [
           provideRouter([]),
+          { provide: PRECONNECT_CHECK_BLOCKLIST, useValue: ['https://picsum.photos'] },
           { provide: FavoritesService, useValue: { favorites: signal([]) } },
         ],
       }).compileComponents();

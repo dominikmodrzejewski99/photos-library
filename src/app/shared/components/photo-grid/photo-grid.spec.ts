@@ -1,3 +1,4 @@
+import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
@@ -17,7 +18,10 @@ describe('PhotoGrid', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhotoGrid],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: PRECONNECT_CHECK_BLOCKLIST, useValue: ['https://picsum.photos'] },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoGrid);
