@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { FavoritesService } from './favorites.service';
 import { Photo } from '../models/photo.model';
 
-const photoA: Photo = { id: 1, url: 'https://picsum.photos/id/1/400' };
-const photoB: Photo = { id: 2, url: 'https://picsum.photos/id/2/400' };
+const photoA: Photo = { id: 1, url: 'https://picsum.photos/id/1/400', author: 'Author A' };
+const photoB: Photo = { id: 2, url: 'https://picsum.photos/id/2/400', author: 'Author B' };
 
 function createService(): FavoritesService {
   TestBed.resetTestingModule();
@@ -48,7 +48,7 @@ describe('FavoritesService', () => {
     expect(service.isFavorite(photoA.id)).toBe(false);
   });
 
-  it('reports isFavorite false for unknown ids', () => {
+  it('treats an unsaved photo as not favorited', () => {
     expect(service.isFavorite(999)).toBe(false);
   });
 

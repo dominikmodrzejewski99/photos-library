@@ -1,6 +1,7 @@
 export interface Photo {
   id: number;
   url: string;
+  author: string;
 }
 
 export interface PhotoResponse {

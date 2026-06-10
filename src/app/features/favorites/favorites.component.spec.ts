@@ -6,8 +6,8 @@ import { FavoritesComponent } from './favorites.component';
 import { FavoritesService } from '../../shared/services/favorites.service';
 
 const mockPhotos = [
-  { id: 1, url: 'https://picsum.photos/id/1/400/600' },
-  { id: 2, url: 'https://picsum.photos/id/2/400/600' },
+  { id: 1, url: 'https://picsum.photos/id/1/400/600', author: 'Author A' },
+  { id: 2, url: 'https://picsum.photos/id/2/400/600', author: 'Author B' },
 ];
 
 describe('FavoritesComponent', () => {

@@ -1,4 +1,5 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, viewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PhotoGrid } from '../../../../shared/components/photo-grid/photo-grid';
 import { PhotoService } from '../../../../shared/services/photo.service';
@@ -25,6 +26,7 @@ export class PhotoList {
   readonly error = this.photoService.error;
 
   constructor() {
+    inject(Title).setTitle('Photos');
     afterNextRender(() => {
       const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {

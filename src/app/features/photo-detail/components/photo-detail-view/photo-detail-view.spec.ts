@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { vi } from 'vitest';
 import { PhotoDetailView } from './photo-detail-view';
 
-const mockPhoto = { id: 1, url: 'https://picsum.photos/id/1/800/800' };
+const mockPhoto = { id: 1, url: 'https://picsum.photos/id/1/800/800', author: 'Author A' };
 
 describe('PhotoDetailView', () => {
   let component: PhotoDetailView;

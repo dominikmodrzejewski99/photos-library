@@ -7,8 +7,8 @@ import { PhotoGrid } from './photo-grid';
 import { Photo } from '../../models/photo.model';
 
 const mockPhotos: Photo[] = [
-  { id: 1, url: 'https://picsum.photos/id/1/400/600' },
-  { id: 2, url: 'https://picsum.photos/id/2/400/600' },
+  { id: 1, url: 'https://picsum.photos/id/1/400/600', author: 'Author A' },
+  { id: 2, url: 'https://picsum.photos/id/2/400/600', author: 'Author B' },
 ];
 
 describe('PhotoGrid', () => {

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { PhotoGrid } from '../../shared/components/photo-grid/photo-grid';
 import { FavoritesService } from '../../shared/services/favorites.service';
@@ -13,6 +14,10 @@ import { Photo } from '../../shared/models/photo.model';
 export class FavoritesComponent {
   private favoritesService = inject(FavoritesService);
   private router = inject(Router);
+
+  constructor() {
+    inject(Title).setTitle('Favorites');
+  }
 
   readonly photos = this.favoritesService.favorites;
 

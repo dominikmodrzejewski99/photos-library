@@ -20,6 +20,7 @@ describe('PhotoService', () => {
 
   beforeEach(() => {
     vi.useFakeTimers();
+    vi.spyOn(Math, 'random').mockReturnValue(0);
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
@@ -36,7 +37,7 @@ describe('PhotoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should set isLoading to true immediately on loadMore', () => {
+  it('starts in a loading state while fetching', () => {
     service.loadMore();
     expect(service.isLoading()).toBe(true);
     httpMock.expectOne((req) => req.url === PICSUM_API);
@@ -66,8 +67,8 @@ describe('PhotoService', () => {
     vi.advanceTimersByTime(MAX_DELAY_MS);
     await vi.runAllTimersAsync();
 
-    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/400' });
-    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/400' });
+    expect(service.photos()[0]).toEqual({ id: 0, url: 'https://picsum.photos/id/0/400', author: 'Author A' });
+    expect(service.photos()[1]).toEqual({ id: 1, url: 'https://picsum.photos/id/1/400', author: 'Author B' });
   });
 
   it('should set isLoading to false after successful load', async () => {
@@ -109,7 +110,7 @@ describe('PhotoService', () => {
     await vi.runAllTimersAsync();
   });
 
-  it('should set error signal on HTTP error', () => {
+  it('reports an error when the request fails', () => {
     service.loadMore();
     httpMock.expectOne((req) => req.url === PICSUM_API)
       .flush('error', { status: 500, statusText: 'Server Error' });
@@ -123,6 +124,27 @@ describe('PhotoService', () => {
       .flush('error', { status: 500, statusText: 'Server Error' });
 
     expect(service.isLoading()).toBe(false);
+  });
+
+  it('resets to page 1 and keeps existing photos when the API returns an empty list', async () => {
+    service.loadMore();
+    httpMock.expectOne((req) => req.url === PICSUM_API).flush(mockResponse);
+    vi.advanceTimersByTime(MAX_DELAY_MS);
+    await vi.runAllTimersAsync();
+
+    service.loadMore();
+    httpMock.expectOne((req) => req.url === PICSUM_API).flush([]);
+    vi.advanceTimersByTime(MAX_DELAY_MS);
+    await vi.runAllTimersAsync();
+
+    expect(service.photos().length).toBe(2);
+
+    service.loadMore();
+    const req = httpMock.expectOne((req) => req.url === PICSUM_API);
+    expect(req.request.params.get('page')).toBe('1');
+    req.flush([]);
+    vi.advanceTimersByTime(MAX_DELAY_MS);
+    await vi.runAllTimersAsync();
   });
 
   it('should not append photos on HTTP error', () => {
