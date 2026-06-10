@@ -43,7 +43,7 @@ export class PhotoList {
       ? 'Already in favorites'
       : 'Added to favorites';
     this.favoritesService.addFavorite(photo);
-    this.snackBar.open(message, 'Dismiss', { duration: SNACKBAR_DURATION_MS });
+    this.snackBar.open(message, 'Dismiss', { duration: SNACKBAR_DURATION_MS, panelClass: 'snackbar--primary' });
   }
 
   onRetry(): void {

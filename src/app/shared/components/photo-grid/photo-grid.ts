@@ -4,8 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PhotoCard } from '../photo-card/photo-card';
 import { Photo } from '../../models/photo.model';
 
-// First two rows of the 3-column grid are eagerly loaded as LCP candidates.
-const PRIORITY_COUNT = 6;
+const PRIORITY_COUNT = 9;
 
 @Component({
   selector: 'app-photo-grid',

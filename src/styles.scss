@@ -54,6 +54,8 @@ html {
   );
 }
 
+@use 'styles/material-overrides';
+
 body {
   color-scheme: light;
   background-color: var(--mat-sys-surface-container);

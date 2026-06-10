@@ -14,8 +14,8 @@ export class PhotoService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
-  private page = 1;
-  private limit = 10;
+  private page = Math.floor(Math.random() * 100) + 1;
+  private limit = 9;
 
   readonly photos = signal<Photo[]>([]);
   readonly isLoading = signal(false);
@@ -47,8 +47,12 @@ export class PhotoService {
       )
       .subscribe({
         next: (photos: Photo[]) => {
-          this.photos.update((prev) => [...prev, ...photos]);
-          this.page++;
+          if (photos.length === 0) {
+            this.page = 1;
+          } else {
+            this.photos.update((prev) => [...prev, ...photos]);
+            this.page++;
+          }
           this.isLoading.set(false);
         },
       });

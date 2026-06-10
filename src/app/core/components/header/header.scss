@@ -14,7 +14,8 @@
 
   &__nav {
     display: flex;
-    gap: 3rem;
+    justify-content: space-between;
+    width: 36rem;
 
     &-btn {
       --mat-button-outlined-container-shape: 0.25rem;
